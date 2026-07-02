@@ -1,6 +1,6 @@
 id: LiuYan_xwx.CIAdvanced
 name: CIAdvanced
-description: 为你跳过烦人的OOBE，教学，去除无用的提示。
+description: 为你跳过烦人教学，去除无用的提示，打开调试菜单……
 entranceAssembly: "CIAdvanced.dll"
 url: https://github.com/LiuYan-xwx/CIAdvanced
 version: 0.0.0.0
