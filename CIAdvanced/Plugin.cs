@@ -1,10 +1,10 @@
-﻿using CIAdvanced.Models;
+﻿using CIAdvanced.HarmonyPatches;
+using CIAdvanced.Models;
 using CIAdvanced.ViewModels;
 using CIAdvanced.Views;
 using ClassIsland.Core;
 using ClassIsland.Core.Abstractions;
 using ClassIsland.Core.Attributes;
-using ClassIsland.Core.Controls;
 using ClassIsland.Core.Extensions.Registry;
 using ClassIsland.Shared;
 using ClassIsland.Shared.Helpers;
@@ -31,13 +31,23 @@ namespace CIAdvanced
             services.AddSettingsPage<SettingsPage>();
             services.AddTransient<SettingsPageViewModel>();
 
-            AppBase.Current.AppStarted += (_,_) =>
+            AppBase.Current.AppStarted += (_, _) => OnAppStarted();
+        }
+
+        private void OnAppStarted()
+        {
+            ciSettingsService = IAppHost.Host?.Services.GetService(AccessTools.TypeByName("ClassIsland.Services.SettingsService"))!;
+            cisettings = ciSettingsService.GetType().GetProperty("Settings")!.GetValue(ciSettingsService)!;
+            var harmony = new Harmony("ciadvanced");
+            harmony.PatchAll();
+
+            if (TutorialPatch.CheckTutorial())
             {
-                ciSettingsService =IAppHost.Host?.Services.GetService(AccessTools.TypeByName("ClassIsland.Services.SettingsService"))!;
-                cisettings = ciSettingsService.GetType().GetProperty("Settings")!.GetValue(ciSettingsService)!;
-                var harmony = new Harmony("ciadvanced");
-                harmony.PatchAll();
-            };
+                var original = TutorialPatch.TargetMethod();
+                TutorialPatch.Prepare();
+                var post = new HarmonyMethod(TutorialPatch.Postfix);
+                harmony.Patch(original, postfix: post);
+            }
         }
     }
 }

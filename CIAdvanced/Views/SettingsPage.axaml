@@ -39,20 +39,31 @@
                 </controls:SettingsExpander.Footer>
             </controls:SettingsExpander>
 
-            <controls:SettingsExpander
-                Header="完成所有教学"
-                Description="Hook CompletedTutorials 属性始终返回 ITutorialService 中已注册的所有教学"
-                IconSource="{ci:FluentIconSource &#xE2C8;}">
-                <controls:SettingsExpander.Footer>
-                    <ToggleSwitch IsChecked="{Binding Settings.PatchTutorial, Mode=TwoWay}" />
-                </controls:SettingsExpander.Footer>
-            </controls:SettingsExpander>
+            <Grid>
+                <controls:SettingsExpander
+                    Header="假装完成所有教学"
+                    Description="Hook CompletedTutorials 属性始终返回 ITutorialService 中已注册的所有教学"
+                    IconSource="{ci:FluentIconSource &#xE2C8;}"
+                    IsEnabled="{Binding Settings.CanYouAcuallyPatchTutorial}">
+                    <controls:SettingsExpander.Footer>
+                        <ToggleSwitch IsChecked="{Binding Settings.PatchTutorial, Mode=TwoWay}" />
+                    </controls:SettingsExpander.Footer>
+                </controls:SettingsExpander>
+                <controls:SettingsExpander
+                    Header="你的 ClassIsland 没有教学"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    IconSource="{ci:FluentIconSource &#xE2C8;}"
+                    IsVisible="{Binding !Settings.CanYouAcuallyPatchTutorial}" />
+            </Grid>
+
+
 
             <controls:InfoBar
                 IsClosable="False"
                 IsOpen="True"
-                Severity="Warning"
-                Message="以下设置会实际改动您的设置，请注意" />
+                Message="以下设置真的会改动您的设置，请注意"
+                Severity="Warning" />
 
             <controls:SettingsExpander
                 Header="打开调试菜单"

@@ -4,7 +4,6 @@ using System.Reflection;
 
 namespace CIAdvanced.HarmonyPatches
 {
-    [HarmonyPatch]
     public class TutorialPatch
     {
         public static HashSet<string> _completedTutorials = [];
@@ -44,6 +43,17 @@ namespace CIAdvanced.HarmonyPatches
             {
                 __result = _completedTutorials;
             }
+        }
+
+        public static bool CheckTutorial()
+        {
+            var tutorialServiceType = AccessTools.TypeByName("ClassIsland.Core.Abstractions.Services.ITutorialService");
+            if (tutorialServiceType is not null)
+            {
+                Plugin.Settings.CanYouAcuallyPatchTutorial = true;
+                return true;
+            }
+            return false;
         }
     }
 }

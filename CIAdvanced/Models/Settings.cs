@@ -1,6 +1,7 @@
 ﻿using ClassIsland.Shared;
 using CommunityToolkit.Mvvm.ComponentModel;
 using HarmonyLib;
+using System.Text.Json.Serialization;
 
 namespace CIAdvanced.Models
 {
@@ -14,6 +15,10 @@ namespace CIAdvanced.Models
 
         [ObservableProperty]
         private bool _patchTutorial = true;
+
+        [ObservableProperty]
+        [property: JsonIgnore]
+        private bool _canYouAcuallyPatchTutorial = false;
 
 
         private bool _debugMode = true;
