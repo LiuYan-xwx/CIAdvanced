@@ -9,5 +9,8 @@ namespace CIAdvanced.Models
         
         [ObservableProperty]
         private bool _patchAutoDisableCorruptPlugins = true;
+
+        [ObservableProperty]
+        private bool _patchTutorial = true;
     }
 }

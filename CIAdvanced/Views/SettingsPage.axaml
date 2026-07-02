@@ -16,6 +16,11 @@
     </Design.DataContext>
     <ScrollViewer>
         <StackPanel Classes="settings-container animated-intro">
+            <controls:InfoBar
+                IsClosable="False"
+                IsOpen="True"
+                Message="以下设置都不会实际改动您的设置，只是让ClassIsland以为是那样" />
+
             <controls:SettingsExpander
                 Header="关闭倒卖警告"
                 Description="Hook ShowSellingAnnouncement 属性始终返回 false"
@@ -26,13 +31,23 @@
             </controls:SettingsExpander>
 
             <controls:SettingsExpander
-                Header="禁用 自动禁用异常插件"
+                Header="禁用自动禁用异常插件"
                 Description="Hook AutoDisableCorruptPlugins 属性始终返回 false"
                 IconSource="{ci:FluentIconSource &#xE2CC;}">
                 <controls:SettingsExpander.Footer>
                     <ToggleSwitch IsChecked="{Binding Settings.PatchAutoDisableCorruptPlugins, Mode=TwoWay}" />
                 </controls:SettingsExpander.Footer>
             </controls:SettingsExpander>
+
+            <controls:SettingsExpander
+                Header="完成所有教学"
+                Description="Hook CompletedTutorials 属性始终返回 ITutorialService 中已注册的所有教学"
+                IconSource="{ci:FluentIconSource &#xE2CC;}">
+                <controls:SettingsExpander.Footer>
+                    <ToggleSwitch IsChecked="{Binding Settings.PatchTutorial, Mode=TwoWay}" />
+                </controls:SettingsExpander.Footer>
+            </controls:SettingsExpander>
+
         </StackPanel>
     </ScrollViewer>
 </ci:SettingsPageBase>
