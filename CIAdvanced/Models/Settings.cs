@@ -6,5 +6,8 @@ namespace CIAdvanced.Models
     {
         [ObservableProperty]
         private bool _patchSellingAnnouncement = true;
+        
+        [ObservableProperty]
+        private bool _patchAutoDisableCorruptPlugins = true;
     }
 }

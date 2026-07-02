@@ -17,11 +17,20 @@
     <ScrollViewer>
         <StackPanel Classes="settings-container animated-intro">
             <controls:SettingsExpander
-                Header="关闭开源警告"
+                Header="关闭倒卖警告"
                 Description="Hook ShowSellingAnnouncement 属性始终返回 false"
                 IconSource="{ci:FluentIconSource &#xE2CC;}">
                 <controls:SettingsExpander.Footer>
                     <ToggleSwitch IsChecked="{Binding Settings.PatchSellingAnnouncement, Mode=TwoWay}" />
+                </controls:SettingsExpander.Footer>
+            </controls:SettingsExpander>
+
+            <controls:SettingsExpander
+                Header="禁用 自动禁用异常插件"
+                Description="Hook AutoDisableCorruptPlugins 属性始终返回 false"
+                IconSource="{ci:FluentIconSource &#xE2CC;}">
+                <controls:SettingsExpander.Footer>
+                    <ToggleSwitch IsChecked="{Binding Settings.PatchAutoDisableCorruptPlugins, Mode=TwoWay}" />
                 </controls:SettingsExpander.Footer>
             </controls:SettingsExpander>
         </StackPanel>
