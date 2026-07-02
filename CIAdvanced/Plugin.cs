@@ -18,6 +18,8 @@ namespace CIAdvanced
     public class Plugin : PluginBase
     {
         public static Settings Settings { get; set; } = new Settings();
+        public static object? ciSettingsService;
+        public static object? cisettings;
 
         public override void Initialize(HostBuilderContext context, IServiceCollection services)
         {
@@ -31,6 +33,8 @@ namespace CIAdvanced
 
             AppBase.Current.AppStarted += (_,_) =>
             {
+                ciSettingsService =IAppHost.Host?.Services.GetService(AccessTools.TypeByName("ClassIsland.Services.SettingsService"))!;
+                cisettings = ciSettingsService.GetType().GetProperty("Settings")!.GetValue(ciSettingsService)!;
                 var harmony = new Harmony("ciadvanced");
                 harmony.PatchAll();
             };

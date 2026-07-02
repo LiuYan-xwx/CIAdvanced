@@ -19,7 +19,7 @@
             <controls:InfoBar
                 IsClosable="False"
                 IsOpen="True"
-                Message="以下设置都不会实际改动您的设置，只是让 ClassIsland 以为是那样" />
+                Message="以下设置不会实际改动您的设置，只是让 ClassIsland 以为是那样" />
 
             <controls:SettingsExpander
                 Header="关闭倒卖警告"
@@ -48,6 +48,20 @@
                 </controls:SettingsExpander.Footer>
             </controls:SettingsExpander>
 
+            <controls:InfoBar
+                IsClosable="False"
+                IsOpen="True"
+                Severity="Warning"
+                Message="以下设置会实际改动您的设置，请注意" />
+
+            <controls:SettingsExpander
+                Header="打开调试菜单"
+                Description="一键开关调试菜单，保护您的鼠标或手指"
+                IconSource="{ci:FluentIconSource &#xE2C8;}">
+                <controls:SettingsExpander.Footer>
+                    <ToggleSwitch IsChecked="{Binding Settings.DebugMode, Mode=TwoWay}" />
+                </controls:SettingsExpander.Footer>
+            </controls:SettingsExpander>
         </StackPanel>
     </ScrollViewer>
 </ci:SettingsPageBase>
