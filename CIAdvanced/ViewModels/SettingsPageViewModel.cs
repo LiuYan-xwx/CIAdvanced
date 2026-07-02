@@ -1,14 +1,10 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CIAdvanced.Models;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CIAdvanced.ViewModels
 {
-    internal class SettingsPageViewModel : ObservableObject
+    public class SettingsPageViewModel : ObservableObject
     {
-
+        public Settings Settings { get; set; } = Plugin.Settings;
     }
 }

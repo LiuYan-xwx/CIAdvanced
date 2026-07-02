@@ -15,6 +15,15 @@
         <viewModels:SettingsPageViewModel />
     </Design.DataContext>
     <ScrollViewer>
-        <StackPanel Classes="settings-container animated-intro" />
+        <StackPanel Classes="settings-container animated-intro">
+            <controls:SettingsExpander
+                Header="关闭开源警告"
+                Description="Hook ShowSellingAnnouncement 属性始终返回 false"
+                IconSource="{ci:FluentIconSource &#xE2CC;}">
+                <controls:SettingsExpander.Footer>
+                    <ToggleSwitch IsChecked="{Binding Settings.PatchSellingAnnouncement, Mode=TwoWay}" />
+                </controls:SettingsExpander.Footer>
+            </controls:SettingsExpander>
+        </StackPanel>
     </ScrollViewer>
 </ci:SettingsPageBase>

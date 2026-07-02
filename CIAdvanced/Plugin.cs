@@ -1,4 +1,5 @@
 ﻿using CIAdvanced.Models;
+using CIAdvanced.ViewModels;
 using CIAdvanced.Views;
 using ClassIsland.Core;
 using ClassIsland.Core.Abstractions;
@@ -26,6 +27,7 @@ namespace CIAdvanced
                 ConfigureFileHelper.SaveConfig<Settings>(Path.Combine(PluginConfigFolder, "Settings.json"), Settings);  // 保存配置文件
             };
             services.AddSettingsPage<SettingsPage>();
+            services.AddTransient<SettingsPageViewModel>();
 
             var harmony = new Harmony("ciadvanced");
             harmony.PatchAll();

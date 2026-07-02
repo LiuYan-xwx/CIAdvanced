@@ -15,7 +15,10 @@ namespace CIAdvanced.HarmonyPatches
         [HarmonyPostfix]
         public static void Postfix(ref bool __result)
         {
-            __result = false;
+            if (Plugin.Settings.PatchSellingAnnouncement)
+            {
+                __result = false;
+            }
         }
     }
 }

@@ -2,8 +2,9 @@
 
 namespace CIAdvanced.Models
 {
-    public class Settings : ObservableObject
+    public partial class Settings : ObservableObject
     {
-
+        [ObservableProperty]
+        private bool _patchSellingAnnouncement = true;
     }
 }
