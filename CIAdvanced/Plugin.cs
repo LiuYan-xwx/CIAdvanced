@@ -24,13 +24,16 @@ namespace CIAdvanced
             Settings = ConfigureFileHelper.LoadConfig<Settings>(Path.Combine(PluginConfigFolder, "Settings.json"));  // 加载配置文件
             Settings.PropertyChanged += (sender, args) =>
             {
-                ConfigureFileHelper.SaveConfig<Settings>(Path.Combine(PluginConfigFolder, "Settings.json"), Settings);  // 保存配置文件
+                ConfigureFileHelper.SaveConfig(Path.Combine(PluginConfigFolder, "Settings.json"), Settings);  // 保存配置文件
             };
             services.AddSettingsPage<SettingsPage>();
             services.AddTransient<SettingsPageViewModel>();
 
-            var harmony = new Harmony("ciadvanced");
-            harmony.PatchAll();
+            AppBase.Current.AppStarted += (_,_) =>
+            {
+                var harmony = new Harmony("ciadvanced");
+                harmony.PatchAll();
+            };
         }
     }
 }
