@@ -5,7 +5,9 @@ using ClassIsland.Core.Abstractions;
 using ClassIsland.Core.Attributes;
 using ClassIsland.Core.Controls;
 using ClassIsland.Core.Extensions.Registry;
+using ClassIsland.Shared;
 using ClassIsland.Shared.Helpers;
+using HarmonyLib;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -24,6 +26,9 @@ namespace CIAdvanced
                 ConfigureFileHelper.SaveConfig<Settings>(Path.Combine(PluginConfigFolder, "Settings.json"), Settings);  // 保存配置文件
             };
             services.AddSettingsPage<SettingsPage>();
+
+            var harmony = new Harmony("ciadvanced");
+            harmony.PatchAll();
         }
     }
 }
