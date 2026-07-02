@@ -12,4 +12,11 @@
 
 </div>
 
-一款 [ClassIsland](https://github.com/ClassIsland/ClassIsland) 插件，为你去除烦人的教学，关闭无用的提示，打开调试菜单 ……
+[ClassIsland](https://github.com/ClassIsland/ClassIsland) 高级模式(?)，为你去除烦人的教学，关闭无用的提示，打开调试菜单 ……
+
+## 截图
+<img width="1550" height="724" alt="image" src="https://github.com/user-attachments/assets/2c4cd84f-7a58-4976-8031-0744f234ff53" />
+
+## 实现
+本插件大量使用 Harmony 以及反射作为实现，也许会出现莫名其妙的问题？谁知道呢。
+
