@@ -2,7 +2,10 @@ id: LiuYan_xwx.CIAdvanced
 name: CIAdvanced
 description: 为你跳过烦人的OOBE，教学，去除无用的提示。
 entranceAssembly: "CIAdvanced.dll"
-url: https://example.com
+url: https://github.com/LiuYan-xwx/CIAdvanced
 version: 0.0.0.0
 apiVersion: 2.0.0.0
 author: LiuYan_xwx
+repoOwner: LiuYan-xwx
+repoName: CIAdvanced
+assetsRoot: master/CIAdvanced
