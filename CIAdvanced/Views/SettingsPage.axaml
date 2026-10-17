@@ -57,7 +57,20 @@
                     IsVisible="{Binding !Settings.CanYouAcuallyPatchTutorial}" />
             </Grid>
 
-
+            <controls:SettingsExpander
+                Header="首次打开应用设置的页面"
+                Description="每次启动 ClassIsland 后，首次从托盘打开设置时使用；之后仍记住上次页面。修改后下次启动生效。"
+                IconSource="{ci:FluentIconSource &#xE2C8;}">
+                <controls:SettingsExpander.Footer>
+                    <ComboBox
+                        MinWidth="240"
+                        MaxWidth="360"
+                        DisplayMemberBinding="{Binding DisplayName}"
+                        ItemsSource="{Binding SettingsPages}"
+                        SelectedValue="{Binding Settings.DefaultSettingsPageId, Mode=TwoWay}"
+                        SelectedValueBinding="{Binding Id}" />
+                </controls:SettingsExpander.Footer>
+            </controls:SettingsExpander>
 
             <controls:InfoBar
                 IsClosable="False"

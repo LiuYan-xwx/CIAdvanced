@@ -1,7 +1,4 @@
-﻿using ClassIsland.Shared;
-using CommunityToolkit.Mvvm.ComponentModel;
-using HarmonyLib;
-using System.Text.Json.Serialization;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace CIAdvanced.Models
 {
@@ -17,6 +14,9 @@ namespace CIAdvanced.Models
         private bool _patchTutorial = true;
 
         [ObservableProperty]
+        private string _defaultSettingsPageId = "";
+
+        [ObservableProperty]
         [property: JsonIgnore]
         private bool _canYouAcuallyPatchTutorial = false;
 
@@ -26,8 +26,8 @@ namespace CIAdvanced.Models
         {
             get => (bool)Plugin.cisettings?.GetType().GetProperty("IsDebugOptionsEnabled")!.GetValue(Plugin.cisettings)!;
             set
-            { 
-                if(value == _debugMode)
+            {
+                if (value == _debugMode)
                     return;
                 _debugMode = value;
                 Plugin.cisettings?.GetType().GetProperty("IsDebugOptionsEnabled")!.SetValue(Plugin.cisettings, value);
