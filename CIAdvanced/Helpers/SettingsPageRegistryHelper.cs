@@ -1,20 +1,28 @@
-using System.Collections;
 using CIAdvanced.Models;
 using HarmonyLib;
+using System.Collections;
 
 namespace CIAdvanced.Helpers;
 
 internal static class SettingsPageRegistryHelper
 {
-    public static IEnumerable<SettingsPageOption> GetRegisteredPages()
+    private static IReadOnlyList<SettingsPageOption>? _cachedPages;
+
+    public static IReadOnlyList<SettingsPageOption> GetRegisteredPages()
     {
+        if (_cachedPages != null)
+        {
+            return _cachedPages;
+        }
+
         var registryType = AccessTools.TypeByName("ClassIsland.Core.Services.Registry.SettingsWindowRegistryService");
         if (registryType == null ||
             AccessTools.Property(registryType, "Registered")?.GetValue(null) is not IEnumerable registered)
         {
-            yield break;
+            return Array.Empty<SettingsPageOption>();
         }
 
+        List<SettingsPageOption> pages = [];
         foreach (var page in registered)
         {
             if (page == null || AccessTools.Property(page.GetType(), "Id")?.GetValue(page) is not string id ||
@@ -24,7 +32,9 @@ internal static class SettingsPageRegistryHelper
             }
 
             var name = AccessTools.Property(page.GetType(), "Name")?.GetValue(page) as string;
-            yield return new SettingsPageOption(id, string.IsNullOrWhiteSpace(name) ? id : name);
+            pages.Add(new SettingsPageOption(id, string.IsNullOrWhiteSpace(name) ? id : name));
         }
+
+        return _cachedPages = pages.AsReadOnly();
     }
 }
